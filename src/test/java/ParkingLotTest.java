@@ -5,12 +5,12 @@ import org.junit.Test;
 public class ParkingLotTest {
 
     ParkingLot parkingLot = null;
-     Object vehicle=null;
+    Object vehicle = null;
 
     @Before
     public void setUp() throws Exception {
         vehicle = new Object();
-        parkingLot = new ParkingLot(1);
+        parkingLot = new ParkingLot(2);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class ParkingLotTest {
             parkingLot.park(vehicle);
             boolean isPark = parkingLot.isVehicleParked(new Object());
         } catch (ParkingLotException e) {
-            Assert.assertEquals("Parking Fulled",e.getMessage());
+            Assert.assertEquals("Parking Fulled", e.getMessage());
             e.printStackTrace();
         }
     }
@@ -50,10 +50,26 @@ public class ParkingLotTest {
     public void givenParkingLot_IsWhenFulled_ShouldReturnInformOwner() {
         ParkingLotOwner owner = new ParkingLotOwner();
         parkingLot.ownerRegistration(owner);
-        try{
+        try {
             parkingLot.park(vehicle);
-        }catch (ParkingLotException e){
-            e.printStackTrace();
+            parkingLot.park(new Object());
+        } catch (ParkingLotException e) {
+            boolean capacityFulled = owner.isCapacityFulled();
+            Assert.assertTrue(capacityFulled);
+        }
+    }
+
+    @Test
+    public void givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle() {
+        Object vehicle2 = new Object();
+        parkingLot.setSizeCapacity(2);
+        try {
+            parkingLot.park(vehicle);
+            parkingLot.park(vehicle2);
+            boolean vehicleParked = parkingLot.isVehicleParked(vehicle);
+            boolean vehicleParked2 = parkingLot.isVehicleParked(vehicle2);
+            Assert.assertTrue(vehicleParked && vehicleParked2);
+        } catch (ParkingLotException e) {
         }
     }
 }

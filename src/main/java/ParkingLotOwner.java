@@ -4,4 +4,8 @@ public class ParkingLotOwner {
     public void sizeFulled() {
         sizeFull=true;
     }
+
+    public boolean isCapacityFulled() {
+        return this.isCapacityFulled();
+    }
 }

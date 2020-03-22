@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ParkingLotTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-03-22T01:52:20" hostname="LAPTOP-N41Q4R44" time="0.004">
+<testsuite name="ParkingLotTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-03-22T02:56:31" hostname="LAPTOP-N41Q4R44" time="0.007">
   <properties/>
-  <testcase name="givenParkingLot_WhenVehicleParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle" classname="ParkingLotTest" time="0.002"/>
+  <testcase name="givenParkingLot_WhenVehicleParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
   <testcase name="givenParkingLot_IsWhenFulled_ShouldReturnInformOwner" classname="ParkingLotTest" time="0.001"/>
-  <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.001"/>
   <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
