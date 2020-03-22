@@ -85,4 +85,20 @@ public class ParkingLotTest {
             Assert.assertTrue(capacityFull);
         }
     }
+
+    @Test
+    public void giveParkingLot_AfterFulledSign_WheneverParkingLotIs_Available_ItShouldReturnTrue() {
+        Object vehicle2 = new Object();
+        ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
+        parkingLot.registerParkingLotObserver(parkingLotOwner);
+        try{
+            parkingLot.park(vehicle);
+            parkingLot.park(vehicle2);
+        }catch (ParkingLotException e) {
+            parkingLot.unPark(vehicle);
+            boolean sizeFulled = parkingLotOwner.sizeFulled();
+            Assert.assertTrue(sizeFulled);
+        }
+
+    }
 }

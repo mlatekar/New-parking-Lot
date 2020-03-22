@@ -25,18 +25,15 @@ public class ParkingLot {
     }
 
     public void park(Object vehicle) throws ParkingLotException {
+        if (isVehicleParked(vehicle))
+            throw new ParkingLotException("Already parked");
         if (this.vehicles.size() == this.actualSize) {
             for(ParkingLoyObserver observer:observers) {
                 observer.sizeFulled();
             }
-  //          owner.sizeFulled();
-    //        security.sizeFulled();
             throw new ParkingLotException("Parking Fulled");
         }
-        //this.currentCapacity++;
-        if (isVehicleParked(vehicle))
-            throw new ParkingLotException("Already parked");
-        this.vehicles.add(vehicle);
+          this.vehicles.add(vehicle);
 
     }
 
@@ -51,6 +48,9 @@ public class ParkingLot {
             return false;
         if (this.vehicles.contains(vehicle)) {
             this.vehicles.remove(vehicle);
+            for(ParkingLoyObserver observer:observers) {
+                observer.sizeAvailable();
+            }
             return true;
         }
         return false;
