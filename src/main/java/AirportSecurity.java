@@ -1,4 +1,4 @@
-public class ParkingLotOwner implements ParkingLoyObserver{
+public class AirportSecurity implements ParkingLoyObserver {
     private boolean sizeFull;
 
     public boolean sizeFulled() {

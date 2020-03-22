@@ -5,17 +5,32 @@ public class ParkingLot {
     private int currentCapacity;
     private int actualSize;
     private List vehicles;
-    private ParkingLotOwner owner;
+    private List<ParkingLoyObserver> observers;
+    private AirportSecurity security;
 
     public ParkingLot(int size) {
+        this.observers=new ArrayList<>();
         this.vehicles=new ArrayList();
         this.actualSize = size;
+    }
 
+    public void registerParkingLotObserver(ParkingLoyObserver observer) {
+        this.observers.add(observer);
+    }
+  /*  public void registrationOfSecurity(AirportSecurity airportSecurity) {
+        this.security=airportSecurity;
+    }*/
+    public void setSizeCapacity(int parkingSize) {
+        this.actualSize = parkingSize;
     }
 
     public void park(Object vehicle) throws ParkingLotException {
         if (this.vehicles.size() == this.actualSize) {
-            owner.sizeFulled();
+            for(ParkingLoyObserver observer:observers) {
+                observer.sizeFulled();
+            }
+  //          owner.sizeFulled();
+    //        security.sizeFulled();
             throw new ParkingLotException("Parking Fulled");
         }
         //this.currentCapacity++;
@@ -40,14 +55,4 @@ public class ParkingLot {
         }
         return false;
     }
-
-
-    public boolean ownerRegistration(ParkingLotOwner owner) {
-        this.owner = owner;
-        return true;
-    }
-
-    public void setSizeCapacity(int parkingSize) {
-        this.actualSize = parkingSize;
-    }
-}
+ }
