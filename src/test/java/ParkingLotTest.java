@@ -80,8 +80,8 @@ public class ParkingLotTest {
         try {
             parkingLot.park(vehicle);
             parkingLot.park(new Object());
-        }catch (ParkingLotException e) {
-            boolean capacityFull=airportSecurity.sizeFulled();
+        } catch (ParkingLotException e) {
+            boolean capacityFull = airportSecurity.sizeFulled();
             Assert.assertTrue(capacityFull);
         }
     }
@@ -91,14 +91,28 @@ public class ParkingLotTest {
         Object vehicle2 = new Object();
         ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
         parkingLot.registerParkingLotObserver(parkingLotOwner);
-        try{
+        try {
             parkingLot.park(vehicle);
             parkingLot.park(vehicle2);
-        }catch (ParkingLotException e) {
+        } catch (ParkingLotException e) {
             parkingLot.unPark(vehicle);
             boolean sizeFulled = parkingLotOwner.sizeFulled();
             Assert.assertTrue(sizeFulled);
         }
+    }
 
+    @Test
+    public void givenParkingLot_OwnerHaveParkingAttendant_ThatCan_ParkCar() {
+        Object vehicle2 = new Object();
+        ParkingLotOwner parkingAttendant = new ParkingLotOwner();
+        parkingLot.parkingAttendantToParkTheCar(parkingAttendant);
+        try {
+            parkingLot.park(vehicle);
+            parkingLot.park(vehicle2);
+        } catch (ParkingLotException e) {
+            boolean sizeFulled = parkingAttendant.sizeFulled();
+            boolean parkCar = parkingAttendant.vehicleParked();
+            Assert.assertTrue(parkCar && sizeFulled);
+        }
     }
 }

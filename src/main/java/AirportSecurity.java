@@ -1,4 +1,4 @@
-public class AirportSecurity implements ParkingLoyObserver {
+public class AirportSecurity implements ParkingLotObserver {
     private boolean sizeFull;
 
     @Override
@@ -6,6 +6,7 @@ public class AirportSecurity implements ParkingLoyObserver {
         sizeFull = true;
         return false;
     }
+
     @Override
     public void sizeAvailable() {
         sizeFull = false;

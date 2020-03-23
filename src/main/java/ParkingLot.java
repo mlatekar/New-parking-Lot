@@ -5,35 +5,36 @@ public class ParkingLot {
     private int currentCapacity;
     private int actualSize;
     private List vehicles;
-    private List<ParkingLoyObserver> observers;
+    private List<ParkingLotObserver> observers;
     private AirportSecurity security;
+    private List parkingVehicle;
 
     public ParkingLot(int size) {
-        this.observers=new ArrayList<>();
-        this.vehicles=new ArrayList();
+        this.observers = new ArrayList<>();
+        this.vehicles = new ArrayList();
         this.actualSize = size;
+        this.parkingVehicle=new ArrayList();
     }
 
-    public void registerParkingLotObserver(ParkingLoyObserver observer) {
+    public void registerParkingLotObserver(ParkingLotObserver observer) {
         this.observers.add(observer);
     }
-  /*  public void registrationOfSecurity(AirportSecurity airportSecurity) {
-        this.security=airportSecurity;
-    }*/
+
     public void setSizeCapacity(int parkingSize) {
         this.actualSize = parkingSize;
     }
 
     public void park(Object vehicle) throws ParkingLotException {
+       if(parkingAttendantToParkTheCar(parkingVehicle))
         if (isVehicleParked(vehicle))
             throw new ParkingLotException("Already parked");
         if (this.vehicles.size() == this.actualSize) {
-            for(ParkingLoyObserver observer:observers) {
+            for (ParkingLotObserver observer : observers) {
                 observer.sizeFulled();
             }
             throw new ParkingLotException("Parking Fulled");
         }
-          this.vehicles.add(vehicle);
+        this.vehicles.add(vehicle);
 
     }
 
@@ -48,11 +49,17 @@ public class ParkingLot {
             return false;
         if (this.vehicles.contains(vehicle)) {
             this.vehicles.remove(vehicle);
-            for(ParkingLoyObserver observer:observers) {
+            for (ParkingLotObserver observer : observers) {
                 observer.sizeAvailable();
             }
             return true;
         }
         return false;
     }
- }
+
+    public boolean parkingAttendantToParkTheCar(Object parkingVehicle) {
+       if( this.parkingVehicle.contains(parkingVehicle))
+           return true;
+       return false;
+    }
+}

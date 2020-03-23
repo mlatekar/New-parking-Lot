@@ -1,4 +1,4 @@
-public class ParkingLotOwner implements ParkingLoyObserver{
+public class ParkingLotOwner implements ParkingLotObserver {
     private boolean sizeFull;
 
     @Override
@@ -6,6 +6,7 @@ public class ParkingLotOwner implements ParkingLoyObserver{
         sizeFull = true;
         return false;
     }
+
     @Override
     public void sizeAvailable() {
         sizeFull = false;
@@ -13,5 +14,11 @@ public class ParkingLotOwner implements ParkingLoyObserver{
 
     public boolean isCapacityFulled() {
         return this.isCapacityFulled();
+    }
+
+
+    public boolean vehicleParked() {
+        sizeFull=true;
+        return false;
     }
 }
