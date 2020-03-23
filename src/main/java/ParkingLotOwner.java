@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class ParkingLotOwner implements ParkingLotObserver {
     private boolean sizeFull;
 
@@ -12,6 +14,7 @@ public class ParkingLotOwner implements ParkingLotObserver {
         sizeFull = false;
     }
 
+
     public boolean isCapacityFulled() {
         return this.isCapacityFulled();
     }
@@ -21,4 +24,7 @@ public class ParkingLotOwner implements ParkingLotObserver {
         sizeFull=true;
         return false;
     }
+
+
+
 }

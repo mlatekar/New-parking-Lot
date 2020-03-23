@@ -9,6 +9,7 @@ public class AirportSecurity implements ParkingLotObserver {
 
     @Override
     public void sizeAvailable() {
+
         sizeFull = false;
     }
 

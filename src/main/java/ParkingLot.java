@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ParkingLot {
@@ -22,7 +23,7 @@ public class ParkingLot {
         this.actualSize = parkingSize;
     }
 
-    public void park(Object vehicle) throws ParkingLotException {
+    public void park(Object vehicle, Date parkTime) throws ParkingLotException {
         if (parkingAttendantToParkTheCar(parkingVehicle))
             if (isVehicleParked(vehicle))
                 throw new ParkingLotException("Already parked");
@@ -35,7 +36,11 @@ public class ParkingLot {
         this.vehicles.add(vehicle);
 
     }
-
+    public boolean parkingAttendantToParkTheCar(Object parkingVehicle) {
+        if (this.parkingVehicle.contains(parkingVehicle))
+            return true;
+        return false;
+    }
     public boolean isVehicleParked(Object vehicle) {
         if (this.vehicles.contains(vehicle))
             return true;
@@ -55,16 +60,16 @@ public class ParkingLot {
         return false;
     }
 
-    public boolean parkingAttendantToParkTheCar(Object parkingVehicle) {
-        if (this.parkingVehicle.contains(parkingVehicle))
-            return true;
-        return false;
-    }
-
-    public boolean findMyCar(Object vehicle) throws ParkingLotException {
+     public boolean findMyCar(Object vehicle) throws ParkingLotException {
         if (this.vehicles.contains(vehicle)) {
             throw new ParkingLotException("Vehicle Found");
         }
+        return false;
+    }
+
+    public boolean timeWhenCarIsPark(Object parkingTime) {
+        if (vehicles.contains(parkingTime))
+            return true;
         return false;
     }
 }
