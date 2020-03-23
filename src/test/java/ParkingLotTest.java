@@ -115,4 +115,29 @@ public class ParkingLotTest {
             Assert.assertTrue(parkCar && sizeFulled);
         }
     }
+
+    @Test
+    public void givenParkingLot_DriverFindHisCar_shouldReturnTrue() {
+        Object vehicle2 = new Object();
+        try {
+            parkingLot.park(vehicle);
+            parkingLot.park(vehicle2);
+            boolean findMyCar = parkingLot.findMyCar(vehicle2);
+            Assert.assertTrue(findMyCar);
+        } catch (ParkingLotException e) {
+        }
+    }
+
+    @Test
+    public void givenParkingLot_VehicleNotFound_ShouldReturnFalse() {
+        Object vehicle2 = new Object();
+        Object vehicle3 = new Object();
+        try {
+            parkingLot.park(vehicle);
+            parkingLot.park(vehicle2);
+            boolean findMyCar = parkingLot.findMyCar(vehicle3);
+            Assert.assertFalse(findMyCar);
+        } catch (ParkingLotException e) {
+        }
+    }
 }

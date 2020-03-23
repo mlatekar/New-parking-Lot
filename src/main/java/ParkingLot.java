@@ -2,18 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLot {
-    private int currentCapacity;
     private int actualSize;
     private List vehicles;
     private List<ParkingLotObserver> observers;
-    private AirportSecurity security;
     private List parkingVehicle;
 
     public ParkingLot(int size) {
         this.observers = new ArrayList<>();
         this.vehicles = new ArrayList();
         this.actualSize = size;
-        this.parkingVehicle=new ArrayList();
+        this.parkingVehicle = new ArrayList();
     }
 
     public void registerParkingLotObserver(ParkingLotObserver observer) {
@@ -25,9 +23,9 @@ public class ParkingLot {
     }
 
     public void park(Object vehicle) throws ParkingLotException {
-       if(parkingAttendantToParkTheCar(parkingVehicle))
-        if (isVehicleParked(vehicle))
-            throw new ParkingLotException("Already parked");
+        if (parkingAttendantToParkTheCar(parkingVehicle))
+            if (isVehicleParked(vehicle))
+                throw new ParkingLotException("Already parked");
         if (this.vehicles.size() == this.actualSize) {
             for (ParkingLotObserver observer : observers) {
                 observer.sizeFulled();
@@ -58,8 +56,15 @@ public class ParkingLot {
     }
 
     public boolean parkingAttendantToParkTheCar(Object parkingVehicle) {
-       if( this.parkingVehicle.contains(parkingVehicle))
-           return true;
-       return false;
+        if (this.parkingVehicle.contains(parkingVehicle))
+            return true;
+        return false;
+    }
+
+    public boolean findMyCar(Object vehicle) throws ParkingLotException {
+        if (this.vehicles.contains(vehicle)) {
+            throw new ParkingLotException("Vehicle Found");
+        }
+        return false;
     }
 }

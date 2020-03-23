@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ParkingLotTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-23T01:29:56" hostname="LAPTOP-N41Q4R44" time="42.027">
+<testsuite name="ParkingLotTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-03-23T19:36:53" hostname="LAPTOP-N41Q4R44" time="0.007">
   <properties/>
-  <testcase name="givenParkingLot_OwnerHaveParkingAttendant_ThatCan_ParkCar" classname="ParkingLotTest" time="42.027"/>
+  <testcase name="givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle" classname="ParkingLotTest" time="0.001"/>
+  <testcase name="giveParkingLot_AfterFulledSign_WheneverParkingLotIs_Available_ItShouldReturnTrue" classname="ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLot_DriverFindHisCar_shouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_VehicleNotFound_ShouldReturnFalse" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenVehicleParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_OwnerHaveParkingAttendant_ThatCan_ParkCar" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_Full_ShouldInformSecurity" classname="ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLot_IsWhenFulled_ShouldReturnInformOwner" classname="ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
