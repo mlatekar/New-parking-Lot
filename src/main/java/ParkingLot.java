@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class ParkingLot {
     private int actualSize;
@@ -10,7 +11,7 @@ public class ParkingLot {
 
     public ParkingLot(int size) {
         this.observers = new ArrayList<>();
-        this.vehicles = new ArrayList();
+        this.vehicles = new ArrayList<>();
         this.actualSize = size;
         this.parkingVehicle = new ArrayList();
     }
@@ -34,13 +35,26 @@ public class ParkingLot {
             throw new ParkingLotException("Parking Fulled");
         }
         this.vehicles.add(vehicle);
+    }
+    public int emptySlotInParkingLot(){
+
+        int remainingParkingPlace=this.actualSize-this.vehicles.size();
+        return remainingParkingPlace;
 
     }
+
     public boolean parkingAttendantToParkTheCar(Object parkingVehicle) {
         if (this.parkingVehicle.contains(parkingVehicle))
             return true;
         return false;
     }
+
+    public ArrayList emptySpaceToParkTheCar() {
+        ArrayList<Integer> emptySpace = new ArrayList();
+        IntStream.range(0, this.actualSize).filter(slot -> vehicles.get(slot) == null).forEach(slot -> emptySpace.add(slot));
+        return emptySpace;
+    }
+
     public boolean isVehicleParked(Object vehicle) {
         if (this.vehicles.contains(vehicle))
             return true;
@@ -60,7 +74,7 @@ public class ParkingLot {
         return false;
     }
 
-     public boolean findMyCar(Object vehicle) throws ParkingLotException {
+    public boolean findMyCar(Object vehicle) throws ParkingLotException {
         if (this.vehicles.contains(vehicle)) {
             throw new ParkingLotException("Vehicle Found");
         }

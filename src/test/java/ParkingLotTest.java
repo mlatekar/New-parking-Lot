@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ParkingLotTest {
@@ -31,7 +32,7 @@ public class ParkingLotTest {
     public void givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse() {
         try {
             parkingLot.park(vehicle, new Date());
-            boolean isPark = parkingLot.isVehicleParked(new Object());
+            parkingLot.isVehicleParked(new Object());
         } catch (ParkingLotException e) {
             Assert.assertEquals("Parking Fulled", e.getMessage());
             e.printStackTrace();
@@ -158,4 +159,19 @@ public class ParkingLotTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenMultipleCarsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastEmptySpace() {
+        try {
+           parkingLot.park(vehicle, new Date());
+            parkingLot.unPark(vehicle);
+            parkingLot.park(new Object(), new Date());
+            Object emptyParkingSpace = parkingLot.emptySpaceToParkTheCar().get(0);
+            int emptySpaceInParkingLot = parkingLot.emptySlotInParkingLot();
+            Assert.assertEquals(emptySpaceInParkingLot,emptyParkingSpace);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
