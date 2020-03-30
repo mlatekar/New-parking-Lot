@@ -16,6 +16,4 @@ public class ParkingLotOwner implements ParkingLotObserver {
     public boolean setCarParkingTime(int minute) {
         return false;
     }
-
-
 }

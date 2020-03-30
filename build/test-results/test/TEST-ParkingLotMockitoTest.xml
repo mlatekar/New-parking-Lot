@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ParkingLotMockitoTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-03-30T02:29:23" hostname="LAPTOP-N41Q4R44" time="0.184">
+  <properties/>
+  <testcase name="test_WhenAnotherObjectPassedToParkFunction_ParkingLotFullException_ThrowAnException" classname="ParkingLotMockitoTest" time="0.172"/>
+  <testcase name="return_isCapacityFullFunction_InParkingLotOwner" classname="ParkingLotMockitoTest" time="0.003"/>
+  <testcase name="test_WhenVehicleObjectPassedToParkFunction_VehicleAlReadyParkedException_ThrowAnException" classname="ParkingLotMockitoTest" time="0.002"/>
+  <testcase name="test_WhenNewObjectPassedToUnParkFunctionNotMatchesVehicleObject_VehicleNotFoundException_ThrowVehicleNotFoundException" classname="ParkingLotMockitoTest" time="0.002"/>
+  <testcase name="return_isCapacityFullFunction_InAirportSecurity" classname="ParkingLotMockitoTest" time="0.001"/>
+  <testcase name="testParkingLotExceptionClass_ThrowParkingLotException_WhenCallingParkFunction" classname="ParkingLotMockitoTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
