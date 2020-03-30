@@ -1,30 +1,21 @@
-import java.util.Date;
-
 public class ParkingLotOwner implements ParkingLotObserver {
-    private boolean sizeFull;
+    private boolean isFullCapacity;
+    private int parkingTime;
 
     @Override
-    public boolean sizeFulled() {
-        sizeFull = true;
-        return false;
+    public void setCapacityFull() {
+        isFullCapacity = true;
     }
 
     @Override
-    public void sizeAvailable() {
-        sizeFull = false;
+    public boolean isCapacityFull() {
+        return isFullCapacity;
     }
 
-
-    public boolean isCapacityFulled() {
-        return this.isCapacityFulled();
-    }
-
-
-    public boolean vehicleParked() {
-        sizeFull=true;
+    @Override
+    public boolean setCarParkingTime(int minute) {
         return false;
     }
-
 
 
 }

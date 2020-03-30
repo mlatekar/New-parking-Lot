@@ -1,95 +1,99 @@
+import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ParkingLot {
-    private int actualSize;
-    private Map vehicles;
-    private List<ParkingLotObserver> observers;
-    private List parkingVehicle;
-    enum DriverType{NORMAL,HANDICAP}
 
 
-    public ParkingLot(int size) {
-        this.observers = new ArrayList<>();
-        this.vehicles = new HashMap();
-        this.actualSize = size;
-        this.parkingVehicle = new ArrayList();
+    public enum DriverType {NORMAL, HANDICAP}
+
+    private ParkingSlot parkingSlot;
+    private int actualCapacity;
+    private List<ParkingLotObserver> observersList;
+    public List<Object> vehicles;
+
+    public ParkingLot(int actualCapacity) {
+        setParkingLotCapacity(actualCapacity);
+        this.observersList = new ArrayList<>();
+
     }
 
-    public void registerParkingLotObserver(ParkingLotObserver observer) {
-        this.observers.add(observer);
+    public void setParkingLotCapacity(int capacity) {
+        this.actualCapacity = capacity;
+        initializeParkingLot();
     }
 
-    public void setSizeCapacity(int parkingSize) {
-        this.actualSize = parkingSize;
+    public int initializeParkingLot() {
+        this.vehicles = new ArrayList<>();
+        IntStream.range(0, this.actualCapacity).forEach(slots -> vehicles.add(null));
+        return vehicles.size();
     }
 
-    public void park(Object vehicle, Date parkTime,DriverType driverType) throws ParkingLotException {
-    //    if (parkingAttendantToParkTheCar(parkingVehicle,driverType))
-            if (isVehicleParked(vehicle))
-                throw new ParkingLotException("Already parked");
-        if (this.vehicles.size() == this.actualSize) {
-            for (ParkingLotObserver observer : observers) {
-                observer.sizeFulled();
-            }
-            throw new ParkingLotException("Parking Fulled");
+    public boolean park(Object vehicle, DriverType driverType) throws ParkingLotException {
+        parkingSlot = new ParkingSlot(vehicle);
+        if (isVehicleParked(vehicle))
+            throw new ParkingLotException("Already parked", ParkingLotException.ExceptionTypes.VEHICLE_ALREADY_PARKED);
+        if (vehicles.size() == actualCapacity && !vehicles.contains(null)) {
+            observersList.forEach(ParkingLotObserver::setCapacityFull);
+            throw new ParkingLotException("Parking Fulled", ParkingLotException.ExceptionTypes.PARKING_LOT_FULL);
         }
-        this.vehicles.get(vehicle);
-    }
-    public int emptySlotInParkingLot(){
-
-        int remainingParkingPlace=this.actualSize-this.vehicles.size();
-        return remainingParkingPlace;
-
-    }
-
-    public boolean parkingAttendantToParkTheCar(Object parkingVehicle, DriverType driverType) {
-        if(DriverType.NORMAL.equals(driverType)) {
-        if (this.parkingVehicle.contains(parkingVehicle))
-            return true;
-        }
-        if(DriverType.HANDICAP.equals(driverType)) {
-            if (this.parkingVehicle.contains(parkingVehicle))
-                return true;
-        }
-        return false;
-    }
-
-    public ArrayList emptySpaceToParkTheCar() {
-        ArrayList<Integer> emptySpace = new ArrayList();
-        IntStream.range(0,this.actualSize).filter(vehicle -> vehicles.get(vehicle) == null).forEach(slot -> emptySpace.add(slot));
-        return emptySpace;
+        int emptySlotToParkTheVehicleInSlot = emptySlotToParkTheVehicle(driverType);
+        this.vehicles.set(emptySlotToParkTheVehicleInSlot, parkingSlot);
+        return true;
     }
 
     public boolean isVehicleParked(Object vehicle) {
-        if (this.vehicles.equals(vehicle))
-            return true;
-        return false;
+        parkingSlot = new ParkingSlot(vehicle);
+        return this.vehicles.contains(parkingSlot);
     }
 
     public boolean unPark(Object vehicle) {
+        parkingSlot = new ParkingSlot(vehicle);
         if (vehicle == null)
             return false;
-        if (this.vehicles.equals(vehicle)) {
-            this.vehicles.remove(vehicle);
-            for (ParkingLotObserver observer : observers) {
-                observer.sizeAvailable();
-            }
+        if (this.vehicles.contains(parkingSlot)) {
+            this.vehicles.set(this.vehicles.indexOf(parkingSlot), null);
             return true;
         }
         return false;
     }
 
-    public boolean findMyCar(Object vehicle) throws ParkingLotException {
-        if (this.vehicles.equals(vehicle)) {
-            throw new ParkingLotException("Vehicle Found");
-        }
-        return false;
+    public Integer emptySlotToParkTheVehicle(DriverType driverType) {
+        if (DriverType.HANDICAP.equals(driverType))
+            return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
+        return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
     }
 
-    public boolean timeWhenCarIsPark(Object parkingTime) {
-        if (vehicles.equals(parkingTime))
-            return true;
-        return false;
+
+    public int findMyCar(Object vehicle) throws ParkingLotException {
+        parkingSlot = new ParkingSlot(vehicle);
+        if (this.vehicles.contains(parkingSlot))
+            return this.vehicles.indexOf(parkingSlot);
+        throw new ParkingLotException("Vehicle Found", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
+    }
+
+    public ArrayList<Integer> emptySpaceToParkTheCar() {
+        ArrayList<Integer> emptyParkingSpace = new ArrayList();
+        IntStream.range(0, this.actualCapacity).filter(vehicle -> vehicles.get(vehicle) == null).forEach(slot -> emptyParkingSpace.add(slot));
+        return emptyParkingSpace;
+    }
+
+    public Date timeWhenCarIsPark(Object vehicle) {
+        parkingSlot = new ParkingSlot(vehicle);
+        return parkingSlot.parkedTime;
+    }
+
+    public void registerParkingLotObserver(ParkingLotObserver observer) {
+        observersList.add(observer);
     }
 }
+
+    /*public ArrayList parkingAttendantToParkTheCar(DriverType driverType) {
+        ArrayList emptySlotsList = emptySpaceToParkTheCar();
+        if (DriverType.NORMAL.equals(driverType))
+            Collections.sort(emptySlotsList, Collections.reverseOrder());
+        if (DriverType.HANDICAP.equals(driverType))
+            Collections.sort(emptySlotsList);
+        return emptySlotsList;
+    }*/

@@ -1,7 +1,9 @@
 
 public interface ParkingLotObserver {
-    public boolean sizeFulled();
+    void setCapacityFull();
 
-    public void sizeAvailable();
+    boolean isCapacityFull();
 
-    }
+
+    boolean setCarParkingTime(int minute);
+}

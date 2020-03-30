@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ParkingLotTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2020-03-27T19:11:50" hostname="LAPTOP-N41Q4R44" time="0.006">
+<testsuite name="ParkingLotTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2020-03-30T01:17:22" hostname="LAPTOP-N41Q4R44" time="0.041">
   <properties/>
-  <testcase name="givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle" classname="ParkingLotTest" time="0.002"/>
+  <testcase name="givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle" classname="ParkingLotTest" time="0.013"/>
+  <testcase name="givenParkingLot_DriverIsHandicap_ShouldParkTheCarNearestSlot" classname="ParkingLotTest" time="0.0"/>
   <testcase name="giveParkingLot_AfterFulledSign_WheneverParkingLotIs_Available_ItShouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
-  <testcase name="givenParkingLot_DriverIsHandicap_ShouldParkTheCar" classname="ParkingLotTest" time="0.0"/>
   <testcase name="givenParkingLot_DriverFindHisCar_shouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
-  <testcase name="givenParkingLot_VehicleNotFound_ShouldReturnFalse" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_VehicleNotFound_ShouldReturnFalse" classname="ParkingLotTest" time="0.002"/>
   <testcase name="givenParkingLot_WhenVehicleParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
   <testcase name="givenParkingLot_OwnerHaveParkingAttendant_ThatCan_ParkCar" classname="ParkingLotTest" time="0.001"/>
-  <testcase name="givenParkingLot_ParkingOwnerWantToKnow_WhenCarIsPark" classname="ParkingLotTest" time="0.0"/>
+  <testcase name="givenParkingLot_ParkingOwnerWantToKnow_WhenCarIsPark" classname="ParkingLotTest" time="0.013"/>
   <testcase name="givenParkingLot_Full_ShouldInformSecurity" classname="ParkingLotTest" time="0.0"/>
   <testcase name="givenParkingLot_IsWhenFulled_ShouldReturnInformOwner" classname="ParkingLotTest" time="0.0"/>
-  <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.0"/>
-  <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotTest" time="0.0"/>
-  <testcase name="givenMultipleCarsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastEmptySpace" classname="ParkingLotTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotTest" time="0.001"/>
+  <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotTest" time="0.001"/>
+  <testcase name="givenMultipleCarsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastEmptySpace" classname="ParkingLotTest" time="0.005"/>
+  <system-out><![CDATA[Mon Mar 30 06:47:22 IST 2020 time Mon Mar 30 06:47:22 IST 2020
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
