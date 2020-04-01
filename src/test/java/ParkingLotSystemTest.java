@@ -197,12 +197,11 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenMultipleCarParkingLots_WhenAdded_ShouldReturnTrue() {
-        ParkingLotSystem newParkingLot = new ParkingLotSystem(3);
         managementSystemOfParkingLot.addNewLot(parkingLotSystem);
-        managementSystemOfParkingLot.addNewLot(newParkingLot);
         boolean newLot = managementSystemOfParkingLot.isNewLotAdded(parkingLotSystem);
-        boolean newLot2 = managementSystemOfParkingLot.isNewLotAdded(newParkingLot);
-        assertTrue(newLot && newLot2);
+        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        parkingLotSystem.park(new Object(), ParkingLotSystem.DriverType.HANDICAP);
+        Assert.assertTrue(newLot);
     }
 }
 
