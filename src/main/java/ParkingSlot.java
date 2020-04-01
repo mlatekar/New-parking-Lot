@@ -7,7 +7,7 @@ public class ParkingSlot {
 
     public ParkingSlot(Object vehicle) {
         this.vehicle = vehicle;
-        this.parkedTime=new Date();
+        this.parkedTime = new Date();
     }
 
     @Override

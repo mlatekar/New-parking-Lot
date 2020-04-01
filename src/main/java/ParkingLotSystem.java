@@ -1,9 +1,8 @@
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ParkingLot {
+public class ParkingLotSystem {
 
 
     public enum DriverType {NORMAL, HANDICAP}
@@ -13,7 +12,7 @@ public class ParkingLot {
     private List<ParkingLotObserver> observersList;
     public List<Object> vehicles;
 
-    public ParkingLot(int actualCapacity) {
+    public ParkingLotSystem(int actualCapacity) {
         setParkingLotCapacity(actualCapacity);
         this.observersList = new ArrayList<>();
 
@@ -88,12 +87,3 @@ public class ParkingLot {
         observersList.add(observer);
     }
 }
-
-    /*public ArrayList parkingAttendantToParkTheCar(DriverType driverType) {
-        ArrayList emptySlotsList = emptySpaceToParkTheCar();
-        if (DriverType.NORMAL.equals(driverType))
-            Collections.sort(emptySlotsList, Collections.reverseOrder());
-        if (DriverType.HANDICAP.equals(driverType))
-            Collections.sort(emptySlotsList);
-        return emptySlotsList;
-    }*/

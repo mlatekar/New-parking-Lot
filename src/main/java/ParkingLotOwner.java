@@ -8,12 +8,12 @@ public class ParkingLotOwner implements ParkingLotObserver {
     }
 
     @Override
-    public boolean isCapacityFull() {
+    public boolean isCapacityAvailable() {
         return isFullCapacity;
     }
 
     @Override
-    public boolean setCarParkingTime(int minute) {
-        return false;
+    public boolean isParkingLotFull() {
+        return isFullCapacity;
     }
 }
