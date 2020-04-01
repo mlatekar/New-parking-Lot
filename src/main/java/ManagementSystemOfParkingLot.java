@@ -22,7 +22,7 @@ public class ManagementSystemOfParkingLot {
     }
 
     public boolean park(Object vehicle, ParkingLotSystem.DriverType driverType) {
-        ParkingLotSystem lot = emptySpaceToParkTheCar();
+        ParkingLotSystem lot = maximumFreeSpaceToParkTheCar();
         return lot.park(vehicle, driverType);
     }
 
@@ -53,7 +53,7 @@ public class ManagementSystemOfParkingLot {
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-    public ParkingLotSystem emptySpaceToParkTheCar() {
+    public ParkingLotSystem maximumFreeSpaceToParkTheCar() {
         return parkingLotsList.stream().sorted(Comparator.comparing(list -> list.emptySpaceToParkTheCar().size(), Comparator.reverseOrder())).collect(Collectors.toList()).get(0);
     }
 

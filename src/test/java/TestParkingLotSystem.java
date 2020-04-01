@@ -13,9 +13,9 @@ import static org.mockito.Mockito.mock;
 
 public class TestParkingLotSystem {
     @Mock
-    ManagementSystemOfParkingLot ManagementSystemOfParkingLot;
+    ManagementSystemOfParkingLot managementSystemOfParkingLot;
     ParkingLotSystem parkingLotSystem;
-    ParkingLotSystem.DriverType driverTypes;
+    ParkingLotSystem.DriverType driverType;
     Object vehicle;
 
     @Rule
@@ -23,7 +23,7 @@ public class TestParkingLotSystem {
 
     @Before
     public void setup() {
-        ManagementSystemOfParkingLot = mock(ManagementSystemOfParkingLot.class);
+        managementSystemOfParkingLot = mock(ManagementSystemOfParkingLot.class);
         vehicle = new Object();
         parkingLotSystem = new ParkingLotSystem(2);
     }
@@ -33,8 +33,8 @@ public class TestParkingLotSystem {
         doAnswer((Answer<Void>) invocationOnMock -> {
             parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
             return null;
-        }).when(ManagementSystemOfParkingLot).park(vehicle, ParkingLotSystem.DriverType.NORMAL);
-        boolean isParked = parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        }).when(managementSystemOfParkingLot).park(vehicle, driverType.NORMAL);
+        boolean isParked = parkingLotSystem.park(vehicle, driverType.NORMAL);
         assertTrue(isParked);
     }
 
@@ -43,8 +43,8 @@ public class TestParkingLotSystem {
         doAnswer((Answer<Void>) invocationOnMock -> {
             parkingLotSystem.unPark(vehicle);
             return null;
-        }).when(ManagementSystemOfParkingLot).unPark(vehicle);
-        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        }).when(managementSystemOfParkingLot).unPark(vehicle);
+        parkingLotSystem.park(vehicle, driverType.NORMAL);
         boolean isParked = parkingLotSystem.unPark(vehicle);
         assertTrue(isParked);
     }
@@ -54,11 +54,22 @@ public class TestParkingLotSystem {
         doAnswer((Answer<Void>) invocationOnMock -> {
             parkingLotSystem.findMyCar(vehicle);
             return null;
-        }).when(ManagementSystemOfParkingLot).findMyCar(vehicle);
+        }).when(managementSystemOfParkingLot).findMyCar(vehicle);
         try {
             parkingLotSystem.findMyCar(vehicle);
         } catch (ParkingLotException e) {
             assertSame(ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND, e.exceptionTypes);
         }
     }
+
+    @Test
+    public void when_Called_ParkFunction_ShouldParkLargeVehicle() {
+        doAnswer((Answer<Void>) invocationOnMock -> {
+            parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.LARGE_VEHICLE);
+            return null;
+        }).when(managementSystemOfParkingLot).park(vehicle, driverType.LARGE_VEHICLE);
+        boolean isParked = parkingLotSystem.park(vehicle, driverType.LARGE_VEHICLE);
+        assertTrue(isParked);
+    }
+
 }

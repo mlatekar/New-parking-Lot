@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import java.util.Date;
 
-import static org.junit.Assert.assertTrue;
-
 public class ParkingLotSystemTest {
     ManagementSystemOfParkingLot managementSystemOfParkingLot;
     ParkingLotSystem parkingLotSystem;
@@ -197,11 +195,45 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenMultipleCarParkingLots_WhenAdded_ShouldReturnTrue() {
+        try {
+            managementSystemOfParkingLot.addNewLot(parkingLotSystem);
+            boolean newLot = managementSystemOfParkingLot.isNewLotAdded(parkingLotSystem);
+            parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+            parkingLotSystem.park(new Object(), ParkingLotSystem.DriverType.HANDICAP);
+            Assert.assertTrue(newLot);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //UC11
+    @Test
+    public void givenParkingLot_LargeCarsParkIn_HighestSpaceParkingLot_ShouldReturnTrue() {
+        parkingLotSystem.setParkingLotCapacity(8);
+        parkingLotSystem.initializeParkingLot();
+
         managementSystemOfParkingLot.addNewLot(parkingLotSystem);
-        boolean newLot = managementSystemOfParkingLot.isNewLotAdded(parkingLotSystem);
-        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
-        parkingLotSystem.park(new Object(), ParkingLotSystem.DriverType.HANDICAP);
-        Assert.assertTrue(newLot);
+        managementSystemOfParkingLot.isNewLotAdded(parkingLotSystem);
+
+        Object vehicle2 = new Object();
+        Object vehicle3 = new Object();
+        Object vehicle4 = new Object();
+        Object vehicle5 = new Object();
+        Object vehicle6 = new Object();
+
+        try {
+            managementSystemOfParkingLot.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+            managementSystemOfParkingLot.park(vehicle6, ParkingLotSystem.DriverType.LARGE_VEHICLE);
+            managementSystemOfParkingLot.park(vehicle4, ParkingLotSystem.DriverType.HANDICAP);
+            managementSystemOfParkingLot.park(vehicle2, ParkingLotSystem.DriverType.NORMAL);
+            managementSystemOfParkingLot.park(vehicle5, ParkingLotSystem.DriverType.LARGE_VEHICLE);
+            managementSystemOfParkingLot.park(vehicle3, ParkingLotSystem.DriverType.NORMAL);
+            managementSystemOfParkingLot.park(new Object(), ParkingLotSystem.DriverType.NORMAL);
+
+            boolean vehicleParked = managementSystemOfParkingLot.isVehicleParked(vehicle5);
+            Assert.assertTrue(vehicleParked);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
     }
 }
-

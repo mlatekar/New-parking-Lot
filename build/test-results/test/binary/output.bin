@@ -1,0 +1,12 @@
+p[MockitoHint] TestParkingLotSystem.when_Called_ParkFunction_ShouldParkTheVehicle (see javadoc for MockitoHint):
+[MockitoHint] 1. Unused -> at TestParkingLotSystem.when_Called_ParkFunction_ShouldParkTheVehicle(TestParkingLotSystem.java:36)
+
+r[MockitoHint] TestParkingLotSystem.when_Called_UnParkFunction_ShouldParkTheVehicle (see javadoc for MockitoHint):
+[MockitoHint] 1. Unused -> at TestParkingLotSystem.when_Called_UnParkFunction_ShouldParkTheVehicle(TestParkingLotSystem.java:46)
+
+r[MockitoHint] TestParkingLotSystem.when_Called_ParkFunction_ShouldParkLargeVehicle (see javadoc for MockitoHint):
+[MockitoHint] 1. Unused -> at TestParkingLotSystem.when_Called_ParkFunction_ShouldParkLargeVehicle(TestParkingLotSystem.java:70)
+
+w[MockitoHint] TestParkingLotSystem.when_Called_FindVehicleFunction_ShouldParkTheVehicle (see javadoc for MockitoHint):
+†[MockitoHint] 1. Unused -> at TestParkingLotSystem.when_Called_FindVehicleFunction_ShouldParkTheVehicle(TestParkingLotSystem.java:57)
+

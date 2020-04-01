@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 public class ParkingLotSystem {
 
 
-    public enum DriverType {NORMAL, HANDICAP}
+    public enum DriverType {NORMAL, HANDICAP, LARGE_VEHICLE}
 
     private ParkingSlot parkingSlot;
     private int actualCapacity;
@@ -59,8 +59,12 @@ public class ParkingLotSystem {
     }
 
     public Integer emptySlotToParkTheVehicle(DriverType driverType) {
-        if (DriverType.HANDICAP.equals(driverType))
+        if (DriverType.HANDICAP.equals(driverType)) {
             return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
+        }
+        if (DriverType.LARGE_VEHICLE.equals(driverType)) {
+            return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
+        }
         return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
     }
 
