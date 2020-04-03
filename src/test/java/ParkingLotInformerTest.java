@@ -39,8 +39,8 @@ public class ParkingLotInformerTest {
         doAnswer((Answer<Void>) invocationOnMock -> {
             informer.notifyParkCapacityFull();
             return null;
-        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL);
-        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
+        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
         Assert.assertTrue(owner.isParkingLotFull() && security.isParkingLotFull());
     }
 
@@ -51,8 +51,8 @@ public class ParkingLotInformerTest {
         doAnswer((Answer<Void>) invocationOnMock -> {
             informer.notifyParkCapacityAvailable();
             return null;
-        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL);
-        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
+        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
         Assert.assertFalse(owner.isParkingLotFull() && security.isParkingLotFull());
     }
 }

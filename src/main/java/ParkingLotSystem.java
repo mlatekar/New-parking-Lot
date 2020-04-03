@@ -29,9 +29,9 @@ public class ParkingLotSystem {
         return vehicles.size();
     }
 
-    public boolean park(Object vehicle, DriverType driverType) throws ParkingLotException {
-        parkingSlot = new ParkingSlot(vehicle);
-        if (isVehicleParked(vehicle))
+    public boolean park(Object vehicle, DriverType driverType, String colour) throws ParkingLotException {
+        parkingSlot = new ParkingSlot(vehicle, colour);
+        if (isVehicleParked(vehicle, colour))
             throw new ParkingLotException("Already parked", ParkingLotException.ExceptionTypes.VEHICLE_ALREADY_PARKED);
         if (vehicles.size() == actualCapacity && !vehicles.contains(null)) {
             observersList.forEach(ParkingLotObserver::setCapacityFull);
@@ -42,13 +42,13 @@ public class ParkingLotSystem {
         return true;
     }
 
-    public boolean isVehicleParked(Object vehicle) {
-        parkingSlot = new ParkingSlot(vehicle);
+    public boolean isVehicleParked(Object vehicle, String colour) {
+        parkingSlot = new ParkingSlot(vehicle, colour);
         return this.vehicles.contains(parkingSlot);
     }
 
-    public boolean unPark(Object vehicle) {
-        parkingSlot = new ParkingSlot(vehicle);
+    public boolean unPark(Object vehicle, String colour) {
+        parkingSlot = new ParkingSlot(vehicle, colour);
         if (vehicle == null)
             return false;
         if (this.vehicles.contains(parkingSlot)) {
@@ -63,14 +63,21 @@ public class ParkingLotSystem {
             return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
         }
         if (DriverType.LARGE_VEHICLE.equals(driverType)) {
-            return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
+            return largeVehicleThatPark();
         }
         return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
     }
 
+    public int largeVehicleThatPark() {
+        for (int i = 0; i < vehicles.size(); i++)
+            if (vehicles.get(i) == null && vehicles.get(i + 1) == null && vehicles.get(i + 2) == null)
+                return i + 1;
+        return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
 
-    public int findMyCar(Object vehicle) throws ParkingLotException {
-        parkingSlot = new ParkingSlot(vehicle);
+    }
+
+    public int findMyCar(Object vehicle, String colour) throws ParkingLotException {
+        parkingSlot = new ParkingSlot(vehicle, colour);
         if (this.vehicles.contains(parkingSlot))
             return this.vehicles.indexOf(parkingSlot);
         throw new ParkingLotException("Vehicle Found", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
@@ -79,11 +86,12 @@ public class ParkingLotSystem {
     public ArrayList<Integer> emptySpaceToParkTheCar() {
         ArrayList<Integer> emptyParkingSpace = new ArrayList();
         IntStream.range(0, this.actualCapacity).filter(vehicle -> vehicles.get(vehicle) == null).forEach(slot -> emptyParkingSpace.add(slot));
+        ArrayList<Integer> emptyParkingSpace1 = emptyParkingSpace;
         return emptyParkingSpace;
     }
 
-    public Date timeWhenCarIsPark(Object vehicle) {
-        parkingSlot = new ParkingSlot(vehicle);
+    public Date timeWhenCarIsPark(Object vehicle, String colour) {
+        parkingSlot = new ParkingSlot(vehicle, colour);
         return parkingSlot.parkedTime;
     }
 

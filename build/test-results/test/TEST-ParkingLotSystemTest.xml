@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ParkingLotSystemTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2020-04-03T19:47:36" hostname="LAPTOP-N41Q4R44" time="0.042">
+  <properties/>
+  <testcase name="givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle" classname="ParkingLotSystemTest" time="0.01"/>
+  <testcase name="givenMultipleCarParkingLots_WhenAdded_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_DriverIsHandicap_ShouldParkTheCarNearestSlot" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="giveParkingLot_AfterFulledSign_WheneverParkingLotIs_Available_ItShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_DriverFindHisCar_shouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_VehicleNotFound_ShouldReturnFalse" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="givenParkingLot_WhenVehicleParked_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_OwnerHaveParkingAttendant_ThatCan_ParkCar" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_ParkingOwnerWantToKnow_WhenCarIsPark" classname="ParkingLotSystemTest" time="0.023"/>
+  <testcase name="givenParkingLot_Full_ShouldInformSecurity" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_IsWhenFulled_ShouldReturnInformOwner" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenMultipleCarsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastEmptySpace" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_LargeCarsParkIn_HighestSpaceParkingLot_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <system-out><![CDATA[Sat Apr 04 01:17:36 IST 2020 time Sat Apr 04 01:17:36 IST 2020
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
