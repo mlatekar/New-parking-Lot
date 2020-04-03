@@ -69,9 +69,9 @@ public class ParkingLotSystem {
     }
 
     public int largeVehicleThatPark() {
-        for (int i = 0; i < vehicles.size(); i++)
-            if (vehicles.get(i) == null && vehicles.get(i + 1) == null && vehicles.get(i + 2) == null)
-                return i + 1;
+        for (int PlaceTOPark = 0; PlaceTOPark < vehicles.size(); PlaceTOPark++)
+            if (vehicles.get(PlaceTOPark) == null && vehicles.get(PlaceTOPark + 1) == null && vehicles.get(PlaceTOPark + 2) == null)
+                return PlaceTOPark + 1;
         return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
 
     }

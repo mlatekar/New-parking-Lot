@@ -39,14 +39,7 @@ public class ManagementSystemOfParkingLot {
             return parkingLots.findMyCar(vehicle,colour);
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
- /*   public List findCarByColour(String vehicleColour) throws ParkingLotException {
-        List<ArrayList> listOfCars = new ArrayList();
-            for(Object carColour : this.parkingLotsList)
-                ArrayList<Integer> wholeListOfCars=carColour.findMyCar(vehicleColour);
-        listOfCars.add(wholeListOfCars);
-        return listOfCars;
-        throw new ParkingLotException("Vehicle Found", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
-    }*/
+
     public boolean unPark(Object vehicle,String colour) {
         for (ParkingLotSystem parkingLots : this.parkingLotSystemList) {
             return parkingLots.unPark(vehicle,colour);
@@ -63,14 +56,7 @@ public class ManagementSystemOfParkingLot {
     public ParkingLotSystem maximumFreeSpaceToParkTheCar() {
         return parkingLotSystemList.stream().sorted(Comparator.comparing(list -> list.emptySpaceToParkTheCar().size(), Comparator.reverseOrder())).collect(Collectors.toList()).get(0);
     }
-   /* public List findVehicleByField(String fieldName) {
-        List<ArrayList> parkingLotsList = new ArrayList<>();
-        for (ParkingLot list : this.parkingLots) {
-            ArrayList<Integer> onField = list.findOnField(fieldName);
-            parkingLotsList.add(onField);
-        }
-        return parkingLotsList;
-    }*/
+
     public void registerParkingLotObserver(ParkingLotObserver observer) {
         informer.registerParkingLotObserver(observer);
     }
