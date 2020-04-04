@@ -295,4 +295,30 @@ public class ParkingLotSystemTest {
         System.out.println("Location of Blue cars " + blueTOYOTA);
         Assert.assertEquals(totalCar, blueTOYOTA);
     }
+
+    //UC14
+    @Test
+    public void givenParkingLot_PoliceWantToKnow_AllBMW_Cars() {
+        parkingLotSystem.setParkingLotCapacity(5);
+        parkingLotSystem.initializeParkingLot();
+
+        managementSystemOfParkingLot.addNewLot(parkingLotSystem);
+        managementSystemOfParkingLot.isNewLotAdded(parkingLotSystem);
+
+        Vehicles vehicle2 = new Vehicles("Black", "MH05DX0110", "BMW");
+        Vehicles vehicle3 = new Vehicles("Red", "MH46OO0007", "BMW");
+
+        managementSystemOfParkingLot.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        managementSystemOfParkingLot.park(vehicle2, ParkingLotSystem.DriverType.HANDICAP);
+        managementSystemOfParkingLot.park(vehicle3, ParkingLotSystem.DriverType.LARGE_VEHICLE);
+
+
+        List<String> totalBMW = parkingLotSystem.findMyCarByCarType( "BMW");
+        List<String> totalCars = new ArrayList<>();
+        totalCars.add("MH05DX0110");
+        totalCars.add("MH46OO0007");
+
+        System.out.println("Location of Blue cars " + totalBMW);
+        Assert.assertEquals(totalCars, totalBMW);
+    }
 }

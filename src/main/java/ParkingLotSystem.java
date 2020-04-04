@@ -110,6 +110,19 @@ public class ParkingLotSystem {
         }
     }
 
+    public List<String> findMyCarByCarType(String carsType) {
+        try {
+            List<String> carCompany = new ArrayList<>();
+            carCompany = this.vehicles.stream()
+                    .filter(parkingSlot -> parkingSlot != null)
+                    .filter(parkingSlot -> parkingSlot.vehiclesData().carsType.equals(carsType))
+                    .map(parkingSlot -> parkingSlot.vehiclesData().carsNumberPlate())
+                    .collect(Collectors.toList());
+            return carCompany;
+        } catch (ParkingLotException e) {
+            throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
+        }    }
+
     public ArrayList<Integer> emptySpaceToParkTheCar() {
         ArrayList<Integer> emptyParkingSpace = new ArrayList();
         IntStream.range(0, this.actualCapacity).filter(vehicle -> vehicles.get(vehicle) == null).forEach(slot -> emptyParkingSpace.add(slot));

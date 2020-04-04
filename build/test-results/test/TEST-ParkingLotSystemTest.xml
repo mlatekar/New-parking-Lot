@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ParkingLotSystemTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2020-04-04T23:23:21" hostname="LAPTOP-N41Q4R44" time="0.07">
+<testsuite name="ParkingLotSystemTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2020-04-04T23:53:03" hostname="LAPTOP-N41Q4R44" time="0.264">
   <properties/>
   <testcase name="givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle" classname="ParkingLotSystemTest" time="0.01"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_AllBMW_Cars" classname="ParkingLotSystemTest" time="0.004"/>
   <testcase name="givenMultipleCarParkingLots_WhenAdded_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
   <testcase name="givenParkingLot_DriverIsHandicap_ShouldParkTheCarNearestSlot" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_PoliceWantToKnow_Location_NumberPlate_Of_BlueTOYOTA_Car" classname="ParkingLotSystemTest" time="0.006"/>
-  <testcase name="giveParkingLot_AfterFulledSign_WheneverParkingLotIs_Available_ItShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_Location_NumberPlate_Of_BlueTOYOTA_Car" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="giveParkingLot_AfterFulledSign_WheneverParkingLotIs_Available_ItShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
   <testcase name="givenParkingLot_DriverFindHisCar_shouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_VehicleNotFound_ShouldReturnFalse" classname="ParkingLotSystemTest" time="0.016"/>
+  <testcase name="givenParkingLot_VehicleNotFound_ShouldReturnFalse" classname="ParkingLotSystemTest" time="0.005"/>
   <testcase name="givenParkingLot_WhenVehicleParked_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
   <testcase name="givenParkingLot_OwnerHaveParkingAttendant_ThatCan_ParkCar" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_ParkingOwnerWantToKnow_WhenCarIsPark" classname="ParkingLotSystemTest" time="0.022"/>
-  <testcase name="givenParkingLot_Full_ShouldInformSecurity" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLot_IsWhenFulled_ShouldReturnInformOwner" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLot_PoliceWantToKnow_LocationOfAllWhiteCars_ThrowException" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_ParkingOwnerWantToKnow_WhenCarIsPark" classname="ParkingLotSystemTest" time="0.233"/>
+  <testcase name="givenParkingLot_Full_ShouldInformSecurity" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_IsWhenFulled_ShouldReturnInformOwner" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_LocationOfAllWhiteCars_ThrowException" classname="ParkingLotSystemTest" time="0.0"/>
   <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_PoliceWantToKnow_LocationOfAllWhiteCars" classname="ParkingLotSystemTest" time="0.001"/>
-  <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_LocationOfAllWhiteCars" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotSystemTest" time="0.001"/>
   <testcase name="givenMultipleCarsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastEmptySpace" classname="ParkingLotSystemTest" time="0.0"/>
-  <testcase name="givenParkingLot_LargeCarsParkIn_HighestSpaceParkingLot_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.003"/>
-  <system-out><![CDATA[vehicles data [MH06AX0987]
+  <testcase name="givenParkingLot_LargeCarsParkIn_HighestSpaceParkingLot_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <system-out><![CDATA[Location of Blue cars [MH05DX0110, MH46OO0007]
+vehicles data [MH06AX0987]
 Location of Blue cars [MH06AX0987]
-Sun Apr 05 04:53:21 IST 2020 time Sun Apr 05 04:53:21 IST 2020
+Sun Apr 05 05:23:03 IST 2020 time Sun Apr 05 05:23:03 IST 2020
 Location of white cars [6, 7]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
