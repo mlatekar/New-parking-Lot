@@ -7,8 +7,6 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.stubbing.Answer;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 
@@ -18,7 +16,7 @@ public class ParkingLotInformerTest {
     ParkingLotInformer informer;
     ParkingLotOwner owner;
     AirportSecurity security;
-    Object vehicle;
+    Vehicles vehicle;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -29,7 +27,7 @@ public class ParkingLotInformerTest {
         security = new AirportSecurity();
         owner = new ParkingLotOwner();
         informer = new ParkingLotInformer();
-        vehicle = new Object();
+        vehicle = new Vehicles("White");
     }
 
     @Test
@@ -39,8 +37,8 @@ public class ParkingLotInformerTest {
         doAnswer((Answer<Void>) invocationOnMock -> {
             informer.notifyParkCapacityFull();
             return null;
-        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
-        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
+        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
         Assert.assertTrue(owner.isParkingLotFull() && security.isParkingLotFull());
     }
 
@@ -51,8 +49,8 @@ public class ParkingLotInformerTest {
         doAnswer((Answer<Void>) invocationOnMock -> {
             informer.notifyParkCapacityAvailable();
             return null;
-        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
-        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
+        }).when(parkingLotSystem).park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
         Assert.assertFalse(owner.isParkingLotFull() && security.isParkingLotFull());
     }
 }

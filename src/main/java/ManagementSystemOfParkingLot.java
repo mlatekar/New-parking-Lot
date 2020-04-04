@@ -21,35 +21,35 @@ public class ManagementSystemOfParkingLot {
         return this.parkingLotSystemList.contains(parkingLot);
     }
 
-    public boolean park(Object vehicle, ParkingLotSystem.DriverType driverType,String colour) {
+    public boolean park(Vehicles vehicle, ParkingLotSystem.DriverType driverType) {
         ParkingLotSystem lot = maximumFreeSpaceToParkTheCar();
-        return lot.park(vehicle, driverType, colour);
+        return lot.park(vehicle, driverType);
     }
 
-    public boolean isVehicleParked(Object vehicle,String colour) {
+    public boolean isVehicleParked(Vehicles vehicle) {
         for (ParkingLotSystem parkingLots : this.parkingLotSystemList) {
-            if (parkingLots.isVehicleParked(vehicle,colour))
+            if (parkingLots.isVehicleParked(vehicle))
                 return true;
         }
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-    public int findMyCar(Object vehicle,String colour) {
+    public int findMyCar(Vehicles vehicle) {
         for (ParkingLotSystem parkingLots : this.parkingLotSystemList)
-            return parkingLots.findMyCar(vehicle,colour);
+            return parkingLots.findMyCar(vehicle);
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-    public boolean unPark(Object vehicle,String colour) {
+    public boolean unPark(Vehicles vehicle) {
         for (ParkingLotSystem parkingLots : this.parkingLotSystemList) {
-            return parkingLots.unPark(vehicle,colour);
+            return parkingLots.unPark(vehicle);
         }
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-    public Date timeWhenCarIsPark(Object vehicle,String colour) {
+    public Date timeWhenCarIsPark(Vehicles vehicle) {
         for (ParkingLotSystem parkingLots : this.parkingLotSystemList)
-            return parkingLots.timeWhenCarIsPark(vehicle,colour);
+            return parkingLots.timeWhenCarIsPark(vehicle);
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 

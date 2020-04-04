@@ -2,13 +2,11 @@ import java.util.Date;
 
 public class ParkingSlot {
 
-    String colour;
-    Object vehicle;
+    Vehicles vehicle;
     Date parkedTime;
 
-    public ParkingSlot(Object vehicle,String colour) {
+    public ParkingSlot(Vehicles vehicle) {
         this.vehicle = vehicle;
-        this.colour=colour;
         this.parkedTime = new Date();
     }
 

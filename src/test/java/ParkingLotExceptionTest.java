@@ -13,7 +13,7 @@ public class ParkingLotExceptionTest {
     @Mock
     ParkingLotSystem parkingLotSystem;
     ParkingLotOwner owner;
-    Object vehicle;
+    Vehicles vehicle;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -22,12 +22,12 @@ public class ParkingLotExceptionTest {
     public void setup() {
         parkingLotSystem = mock(ParkingLotSystem.class);
         owner = new ParkingLotOwner();
-        vehicle = new Object();
+        vehicle = new Vehicles("White");
     }
 
     @Test
     public void when_Check_For_NewObjectPassedToUnParkFunctionNotMatchesVehicleObject_VehicleNotFoundException_ThrowVehicleNotFoundException() {
-        when(parkingLotSystem.unPark(any(),any())).thenAnswer(
+        when(parkingLotSystem.unPark(any())).thenAnswer(
                 (Answer) invocation -> {
                     if (invocation.getArgument(0) == vehicle) {
                         return "vehicle is unParked";
@@ -35,7 +35,7 @@ public class ParkingLotExceptionTest {
                     throw new ParkingLotException("", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
                 });
         try {
-            parkingLotSystem.unPark(new Object(),any());
+            parkingLotSystem.unPark(new Vehicles("White"));
         } catch (ParkingLotException e) {
             Assert.assertEquals(e.exceptionTypes, ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
         }
@@ -43,7 +43,7 @@ public class ParkingLotExceptionTest {
 
     @Test
     public void when_Check_For_AnotherObjectPassedToParkFunction_ParkingLotFullException_ThrowAnException() {
-        when(parkingLotSystem.park(any(), any(),any())).thenAnswer(
+        when(parkingLotSystem.park(any(), any())).thenAnswer(
                 (Answer) invocation -> {
                     if (invocation.getArgument(0) == vehicle) {
                         throw new ParkingLotException("", ParkingLotException.ExceptionTypes.VEHICLE_ALREADY_PARKED);
@@ -51,7 +51,7 @@ public class ParkingLotExceptionTest {
                     throw new ParkingLotException("", ParkingLotException.ExceptionTypes.PARKING_LOT_FULL);
                 });
         try {
-            parkingLotSystem.park(new Object(), ParkingLotSystem.DriverType.NORMAL,"White");
+            parkingLotSystem.park(new Vehicles("White"), ParkingLotSystem.DriverType.NORMAL);
         } catch (ParkingLotException e) {
             Assert.assertEquals(e.exceptionTypes, ParkingLotException.ExceptionTypes.PARKING_LOT_FULL);
         }
@@ -59,15 +59,15 @@ public class ParkingLotExceptionTest {
 
     @Test
     public void when_Check_For_VehicleObjectPassedToParkFunction_VehicleAlReadyParkedException_ThrowAnException() {
-        when(parkingLotSystem.park(any(), any(),any())).thenAnswer(
+        when(parkingLotSystem.park(any(), any())).thenAnswer(
                 (Answer) invocation -> {
                     if (invocation.getArgument(0).equals(vehicle)) {
-                        throw new ParkingLotException("", ParkingLotException.ExceptionTypes.VEHICLE_ALREADY_PARKED);
+                        throw new ParkingLotException("already parked", ParkingLotException.ExceptionTypes.VEHICLE_ALREADY_PARKED);
                     }
                     throw new ParkingLotException("", ParkingLotException.ExceptionTypes.PARKING_LOT_FULL);
                 });
         try {
-            parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL,"White");
+            parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
         } catch (ParkingLotException e) {
             Assert.assertEquals(e.exceptionTypes, ParkingLotException.ExceptionTypes.VEHICLE_ALREADY_PARKED);
         }
@@ -76,7 +76,7 @@ public class ParkingLotExceptionTest {
     @Test(expected = ParkingLotException.class)
     public void when_Check_For_ParkingLotExceptionClass_ThrowParkingLotException_WhenCallingParkFunction() {
         doThrow(ParkingLotException.class)
-                .when(parkingLotSystem).park(any(), any(ParkingLotSystem.DriverType.class),any());
-        parkingLotSystem.park(1, ParkingLotSystem.DriverType.NORMAL,"White");
+                .when(parkingLotSystem).park(any(), any(ParkingLotSystem.DriverType.class));
+        parkingLotSystem.park(new Vehicles("White"), ParkingLotSystem.DriverType.NORMAL);
     }
 }
