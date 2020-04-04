@@ -24,7 +24,7 @@ public class TestParkingLotSystem {
     @Before
     public void setup() {
         managementSystemOfParkingLot = mock(ManagementSystemOfParkingLot.class);
-        vehicle = new Vehicles("White");
+        vehicle = new Vehicles("White","MH06AX0987","BMW");
         parkingLotSystem = new ParkingLotSystem(2);
     }
 

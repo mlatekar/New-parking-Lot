@@ -22,7 +22,7 @@ public class ParkingLotExceptionTest {
     public void setup() {
         parkingLotSystem = mock(ParkingLotSystem.class);
         owner = new ParkingLotOwner();
-        vehicle = new Vehicles("White");
+        vehicle = new Vehicles("White","MH06AX0987","BMW");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ParkingLotExceptionTest {
                     throw new ParkingLotException("", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
                 });
         try {
-            parkingLotSystem.unPark(new Vehicles("White"));
+            parkingLotSystem.unPark(new Vehicles("White","MH06AX0987","BMW"));
         } catch (ParkingLotException e) {
             Assert.assertEquals(e.exceptionTypes, ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
         }
@@ -51,7 +51,7 @@ public class ParkingLotExceptionTest {
                     throw new ParkingLotException("", ParkingLotException.ExceptionTypes.PARKING_LOT_FULL);
                 });
         try {
-            parkingLotSystem.park(new Vehicles("White"), ParkingLotSystem.DriverType.NORMAL);
+            parkingLotSystem.park(new Vehicles("White","MH06AX0987","BMW"), ParkingLotSystem.DriverType.NORMAL);
         } catch (ParkingLotException e) {
             Assert.assertEquals(e.exceptionTypes, ParkingLotException.ExceptionTypes.PARKING_LOT_FULL);
         }
@@ -77,6 +77,6 @@ public class ParkingLotExceptionTest {
     public void when_Check_For_ParkingLotExceptionClass_ThrowParkingLotException_WhenCallingParkFunction() {
         doThrow(ParkingLotException.class)
                 .when(parkingLotSystem).park(any(), any(ParkingLotSystem.DriverType.class));
-        parkingLotSystem.park(new Vehicles("White"), ParkingLotSystem.DriverType.NORMAL);
+        parkingLotSystem.park(new Vehicles("White","MH06AX0987","BMW"), ParkingLotSystem.DriverType.NORMAL);
     }
 }

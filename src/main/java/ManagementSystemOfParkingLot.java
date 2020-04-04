@@ -34,12 +34,6 @@ public class ManagementSystemOfParkingLot {
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-    public int findMyCar(Vehicles vehicle) {
-        for (ParkingLotSystem parkingLots : this.parkingLotSystemList)
-            return parkingLots.findMyCar(vehicle);
-        throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
-    }
-
     public boolean unPark(Vehicles vehicle) {
         for (ParkingLotSystem parkingLots : this.parkingLotSystemList) {
             return parkingLots.unPark(vehicle);
@@ -47,14 +41,20 @@ public class ManagementSystemOfParkingLot {
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-    public Date timeWhenCarIsPark(Vehicles vehicle) {
+    public int findMyCar(Vehicles vehicle) {
         for (ParkingLotSystem parkingLots : this.parkingLotSystemList)
-            return parkingLots.timeWhenCarIsPark(vehicle);
+            return parkingLots.findMyCar(vehicle);
         throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
     public ParkingLotSystem maximumFreeSpaceToParkTheCar() {
         return parkingLotSystemList.stream().sorted(Comparator.comparing(list -> list.emptySpaceToParkTheCar().size(), Comparator.reverseOrder())).collect(Collectors.toList()).get(0);
+    }
+
+    public Date timeWhenCarIsPark(Vehicles vehicle) {
+        for (ParkingLotSystem parkingLots : this.parkingLotSystemList)
+            return parkingLots.timeWhenCarIsPark(vehicle);
+        throw new ParkingLotException("VEHICLE IS NOT AVAILABLE", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
     public void registerParkingLotObserver(ParkingLotObserver observer) {

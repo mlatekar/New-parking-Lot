@@ -27,7 +27,7 @@ public class ParkingLotInformerTest {
         security = new AirportSecurity();
         owner = new ParkingLotOwner();
         informer = new ParkingLotInformer();
-        vehicle = new Vehicles("White");
+        vehicle = new Vehicles("White","MH06AX0987","BMW");
     }
 
     @Test

@@ -4,10 +4,19 @@ public class ParkingSlot {
 
     Vehicles vehicle;
     Date parkedTime;
+    private Vehicles numberPlate;
 
     public ParkingSlot(Vehicles vehicle) {
         this.vehicle = vehicle;
         this.parkedTime = new Date();
+    }
+
+    public Vehicles vehiclesData() {
+        return vehicle;
+    }
+
+    public Vehicles numberPlate() {
+        return numberPlate;
     }
 
     @Override

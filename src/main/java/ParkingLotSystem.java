@@ -4,7 +4,6 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-
     public enum DriverType {NORMAL, HANDICAP, LARGE_VEHICLE}
 
     private ParkingSlot parkingSlot;
@@ -15,7 +14,6 @@ public class ParkingLotSystem {
     public ParkingLotSystem(int actualCapacity) {
         setParkingLotCapacity(actualCapacity);
         this.observersList = new ArrayList<>();
-
     }
 
     public void setParkingLotCapacity(int capacity) {
@@ -83,14 +81,34 @@ public class ParkingLotSystem {
         throw new ParkingLotException("Vehicle Found", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-      public ArrayList<Integer> findMyCarByColour(String colour) {
-          ArrayList<Integer> carColour = new ArrayList<>();
-          for (int getCarColour = 0; getCarColour < this.vehicles.size(); getCarColour++)
-              if ((this.vehicles.get(getCarColour) != null))
-                 if (this.vehicles.get(getCarColour).vehicle.searchingCarColour().equals(colour))
-                      carColour.add(getCarColour);
-          return carColour;
-      }
+    public ArrayList<Integer> findMyCarByColour(String colour) {
+        try {
+            ArrayList<Integer> carColour = new ArrayList<>();
+            for (int getCarColour = 0; getCarColour < this.vehicles.size(); getCarColour++)
+                if ((this.vehicles.get(getCarColour) != null))
+                    if (this.vehicles.get(getCarColour).vehicle.searchingCarColour().equals(colour))
+                        carColour.add(getCarColour);
+            return carColour;
+        } catch (ParkingLotException e) {
+            throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
+        }
+    }
+
+    public List<String> findMyCarByColourAndCarType(String carsColour, String carsType) {
+        try {
+            List<String> carColour = new ArrayList<>();
+            carColour = this.vehicles.stream()
+                    .filter(parkingSlot -> parkingSlot != null)
+                    .filter(parkingSlot -> parkingSlot.vehiclesData().carColour.equals(carsColour))
+                    .filter(parkingSlot -> parkingSlot.vehiclesData().carsType.equals(carsType))
+                    .map(parkingSlot -> parkingSlot.vehiclesData().carsNumberPlate())
+                    .collect(Collectors.toList());
+            System.out.println("vehicles data " + carColour);
+            return carColour;
+        } catch (ParkingLotException e) {
+            throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
+        }
+    }
 
     public ArrayList<Integer> emptySpaceToParkTheCar() {
         ArrayList<Integer> emptyParkingSpace = new ArrayList();
