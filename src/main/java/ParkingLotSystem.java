@@ -5,13 +5,13 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public enum DriverType {NORMAL, HANDICAP, LARGE_VEHICLE}
+    public enum DriverType {NORMAL, HANDICAP, LARGE_VEHICLE,SMALL_HANDICAP}
 
     private ParkingSlot parkingSlot;
     private int actualCapacity;
     private List<ParkingLotObserver> observersList;
     public List<ParkingSlot> vehicles;
-    public int last30min=30;
+    public int last30min = 30;
 
     public ParkingLotSystem(int actualCapacity) {
         setParkingLotCapacity(actualCapacity);
@@ -39,7 +39,7 @@ public class ParkingLotSystem {
         }
         int emptySlotToParkTheVehicleInSlot = emptySlotToParkTheVehicle(driverType);
         this.vehicles.set(emptySlotToParkTheVehicleInSlot, parkingSlot);
-        return true;
+                return true;
     }
 
     public boolean isVehicleParked(Vehicles vehicle) {
@@ -60,6 +60,9 @@ public class ParkingLotSystem {
 
     public Integer emptySlotToParkTheVehicle(DriverType driverType) {
         if (DriverType.HANDICAP.equals(driverType)) {
+            return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
+        }
+        if (DriverType.SMALL_HANDICAP.equals(driverType)) {
             return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
         }
         if (DriverType.LARGE_VEHICLE.equals(driverType)) {
@@ -107,6 +110,23 @@ public class ParkingLotSystem {
                     .collect(Collectors.toList());
             System.out.println("vehicles data " + carColour);
             return carColour;
+        } catch (ParkingLotException e) {
+            throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
+        }
+    }
+
+    public List<String> findAllSmallHandicapCars(DriverType driverType) {
+        try {
+            List<String> smallHandicapCars = new ArrayList<>();
+            smallHandicapCars = this.vehicles.stream()
+                    .filter(parkingSlot -> parkingSlot != null)
+                    .filter(parkingSlot -> driverType.equals(driverType))
+                    .map(parkingSlot -> (parkingSlot.vehiclesData().carsNumberPlate()) + " "
+                                      + (parkingSlot.vehiclesData().carsType) + " "
+                                      + (parkingSlot.vehiclesData().carColour))
+                    .collect(Collectors.toList());
+            System.out.println("vehicles data " + smallHandicapCars);
+            return smallHandicapCars;
         } catch (ParkingLotException e) {
             throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
         }

@@ -351,6 +351,30 @@ public class ParkingLotSystemTest {
         totalCars.add("MH05BX8899");
 
         System.out.println("Total Cars that parked last 30min " + lastTotalCarsParked30Min);
-        Assert.assertEquals(totalCars,lastTotalCarsParked30Min);
+        Assert.assertEquals(totalCars, lastTotalCarsParked30Min);
+    }
+
+    //UC16
+    @Test
+    public void givenParkingLot_WantToKnow_AllSmallHandicapCars() {
+        parkingLotSystem.setParkingLotCapacity(5);
+        parkingLotSystem.initializeParkingLot();
+
+        managementSystemOfParkingLot.addNewLot(parkingLotSystem);
+
+        Vehicles vehicle2 = new Vehicles("Cyan", "MH07AS1234", "Jaguar");
+        Vehicles vehicle3 = new Vehicles("Red", "DL33UP9999", "Bugatti");
+
+
+        managementSystemOfParkingLot.park(vehicle2, ParkingLotSystem.DriverType.SMALL_HANDICAP);
+        managementSystemOfParkingLot.park(vehicle3, ParkingLotSystem.DriverType.SMALL_HANDICAP);
+
+        List<String> smallHandicapCars = parkingLotSystem.findAllSmallHandicapCars(ParkingLotSystem.DriverType.SMALL_HANDICAP);
+        List<String> totalCars = new ArrayList<>();
+        totalCars.add("MH07AS1234 Jaguar Cyan");
+        totalCars.add("DL33UP9999 Bugatti Red");
+
+        System.out.println("Total Cars  " + smallHandicapCars);
+        Assert.assertEquals(totalCars, smallHandicapCars);
     }
 }

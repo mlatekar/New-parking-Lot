@@ -3,6 +3,7 @@ import java.util.Date;
 
 public class ParkingSlot {
 
+    ParkingLotSystem.DriverType driverTypeOfCar;
     Vehicles vehicle;
     Date parkedTime;
     private Vehicles numberPlate;
@@ -12,13 +13,7 @@ public class ParkingSlot {
         this.vehicle = vehicle;
         this.parkedTime = new Date();
         this.timeWhenCarIsParkedInSlot = LocalDateTime.now();
-
     }
-
-    /*public int getParkedTime() {
-        int last30Min = parkedTime.getTime() - LocalDateTime.now().getMinute() <= 30;
-        return last30Min;
-    }*/
 
     public Vehicles vehiclesData() {
         return vehicle;

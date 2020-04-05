@@ -16,8 +16,4 @@ public class Vehicles {
     public String carsNumberPlate() {
         return carsNumberPlate;
     }
-
-    public String carType() {
-        return carColour;
-    }
 }
