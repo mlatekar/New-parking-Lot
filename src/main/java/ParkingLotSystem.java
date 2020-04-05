@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,6 +11,7 @@ public class ParkingLotSystem {
     private int actualCapacity;
     private List<ParkingLotObserver> observersList;
     public List<ParkingSlot> vehicles;
+    public int last30min=30;
 
     public ParkingLotSystem(int actualCapacity) {
         setParkingLotCapacity(actualCapacity);
@@ -121,7 +123,8 @@ public class ParkingLotSystem {
             return carCompany;
         } catch (ParkingLotException e) {
             throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
-        }    }
+        }
+    }
 
     public ArrayList<Integer> emptySpaceToParkTheCar() {
         ArrayList<Integer> emptyParkingSpace = new ArrayList();
@@ -133,6 +136,16 @@ public class ParkingLotSystem {
     public Date timeWhenCarIsPark(Vehicles vehicle) {
         parkingSlot = new ParkingSlot(vehicle);
         return parkingSlot.parkedTime;
+    }
+
+    public ArrayList<String> findLast30MinuteParkedCars() {
+        ArrayList<String> ListOf30Min = new ArrayList<>();
+        ListOf30Min = (ArrayList<String>) this.vehicles.stream()
+                .filter(parkingSlot -> parkingSlot != null)
+                .filter(parkingSlot -> parkingSlot.timeWhenCarIsParked().getMinute() - LocalDateTime.now().getMinute() <= last30min)
+                .map(parkingSlot -> parkingSlot.vehiclesData().carsNumberPlate())
+                .collect(Collectors.toList());
+        return ListOf30Min;
     }
 
     public void registerParkingLotObserver(ParkingLotObserver observer) {

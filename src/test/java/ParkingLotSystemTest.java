@@ -313,12 +313,44 @@ public class ParkingLotSystemTest {
         managementSystemOfParkingLot.park(vehicle3, ParkingLotSystem.DriverType.LARGE_VEHICLE);
 
 
-        List<String> totalBMW = parkingLotSystem.findMyCarByCarType( "BMW");
+        List<String> totalBMW = parkingLotSystem.findMyCarByCarType("BMW");
         List<String> totalCars = new ArrayList<>();
         totalCars.add("MH05DX0110");
         totalCars.add("MH46OO0007");
 
         System.out.println("Location of Blue cars " + totalBMW);
         Assert.assertEquals(totalCars, totalBMW);
+    }
+
+    //UC15
+    @Test
+    public void givenParkingLot_WantToKnow_AllCars_WhichParked_InLast30Minutes() {
+        parkingLotSystem.setParkingLotCapacity(5);
+        parkingLotSystem.initializeParkingLot();
+
+        managementSystemOfParkingLot.addNewLot(parkingLotSystem);
+
+        Vehicles vehicle2 = new Vehicles("Cyan", "MH07AS1234", "Jaguar");
+        Vehicles vehicle3 = new Vehicles("Golden", "MH12XO0786", "Bugatti");
+        Vehicles vehicle4 = new Vehicles("Red", "DL33UP9999", "Bugatti");
+        Vehicles vehicle5 = new Vehicles("Black", "OD01MU0619", "Bugatti");
+
+
+        managementSystemOfParkingLot.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+        managementSystemOfParkingLot.park(vehicle2, ParkingLotSystem.DriverType.HANDICAP);
+        managementSystemOfParkingLot.park(vehicle3, ParkingLotSystem.DriverType.LARGE_VEHICLE);
+        managementSystemOfParkingLot.park(vehicle4, ParkingLotSystem.DriverType.HANDICAP);
+        managementSystemOfParkingLot.park(vehicle5, ParkingLotSystem.DriverType.NORMAL);
+
+        ArrayList<String> lastTotalCarsParked30Min = parkingLotSystem.findLast30MinuteParkedCars();
+        ArrayList<String> totalCars = new ArrayList<>();
+        totalCars.add("MH07AS1234");
+        totalCars.add("DL33UP9999");
+        totalCars.add("MH12XO0786");
+        totalCars.add("OD01MU0619");
+        totalCars.add("MH05BX8899");
+
+        System.out.println("Total Cars that parked last 30min " + lastTotalCarsParked30Min);
+        Assert.assertEquals(totalCars,lastTotalCarsParked30Min);
     }
 }

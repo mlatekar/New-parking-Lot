@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ParkingSlot {
@@ -5,18 +6,26 @@ public class ParkingSlot {
     Vehicles vehicle;
     Date parkedTime;
     private Vehicles numberPlate;
+    private LocalDateTime timeWhenCarIsParkedInSlot;
 
     public ParkingSlot(Vehicles vehicle) {
         this.vehicle = vehicle;
         this.parkedTime = new Date();
+        this.timeWhenCarIsParkedInSlot = LocalDateTime.now();
+
     }
+
+    /*public int getParkedTime() {
+        int last30Min = parkedTime.getTime() - LocalDateTime.now().getMinute() <= 30;
+        return last30Min;
+    }*/
 
     public Vehicles vehiclesData() {
         return vehicle;
     }
 
-    public Vehicles numberPlate() {
-        return numberPlate;
+    public LocalDateTime timeWhenCarIsParked() {
+        return timeWhenCarIsParkedInSlot;
     }
 
     @Override
