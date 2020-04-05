@@ -377,4 +377,37 @@ public class ParkingLotSystemTest {
         System.out.println("Total Cars  " + smallHandicapCars);
         Assert.assertEquals(totalCars, smallHandicapCars);
     }
+
+    //UC17
+    @Test
+    public void givenParkingLot_PoliceWantToKnow_AllParkedCars() {
+        parkingLotSystem.setParkingLotCapacity(8);
+        parkingLotSystem.initializeParkingLot();
+
+        managementSystemOfParkingLot.addNewLot(parkingLotSystem);
+
+        Vehicles vehicle2 = new Vehicles("Cyan", "MH07AS1234", "Jaguar");
+        Vehicles vehicle3 = new Vehicles("Red", "DL33UP9999", "Bugatti");
+        Vehicles vehicle4 = new Vehicles("Black", "ZH90UP5678", "Ferrari");
+        Vehicles vehicle5 = new Vehicles("Pink", "RD33UP0987", "BMW");
+        Vehicles vehicle6 = new Vehicles("Gray", "AM33BH3333", "TATA");
+
+        managementSystemOfParkingLot.park(vehicle2, ParkingLotSystem.DriverType.HANDICAP);
+        managementSystemOfParkingLot.park(vehicle3, ParkingLotSystem.DriverType.SMALL_HANDICAP);
+        managementSystemOfParkingLot.park(vehicle4, ParkingLotSystem.DriverType.NORMAL);
+        managementSystemOfParkingLot.park(vehicle5, ParkingLotSystem.DriverType.LARGE_VEHICLE);
+        managementSystemOfParkingLot.park(vehicle6, ParkingLotSystem.DriverType.NORMAL);
+
+
+        List<String> allParkedCars = parkingLotSystem.findAllCars();
+        List<String> totalCars = new ArrayList<>();
+        totalCars.add("MH07AS1234 Jaguar Cyan");
+        totalCars.add("DL33UP9999 Bugatti Red");
+        totalCars.add("RD33UP0987 BMW Pink");
+        totalCars.add("AM33BH3333 TATA Gray");
+        totalCars.add("ZH90UP5678 Ferrari Black");
+
+        System.out.println("Total Cars  " + allParkedCars);
+        Assert.assertEquals(totalCars, allParkedCars);
+    }
 }

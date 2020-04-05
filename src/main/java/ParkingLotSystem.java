@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public enum DriverType {NORMAL, HANDICAP, LARGE_VEHICLE,SMALL_HANDICAP}
+    public enum DriverType {NORMAL, HANDICAP, LARGE_VEHICLE, SMALL_HANDICAP}
 
     private ParkingSlot parkingSlot;
     private int actualCapacity;
@@ -39,7 +39,7 @@ public class ParkingLotSystem {
         }
         int emptySlotToParkTheVehicleInSlot = emptySlotToParkTheVehicle(driverType);
         this.vehicles.set(emptySlotToParkTheVehicleInSlot, parkingSlot);
-                return true;
+        return true;
     }
 
     public boolean isVehicleParked(Vehicles vehicle) {
@@ -122,13 +122,13 @@ public class ParkingLotSystem {
                     .filter(parkingSlot -> parkingSlot != null)
                     .filter(parkingSlot -> driverType.equals(driverType))
                     .map(parkingSlot -> (parkingSlot.vehiclesData().carsNumberPlate()) + " "
-                                      + (parkingSlot.vehiclesData().carsType) + " "
-                                      + (parkingSlot.vehiclesData().carColour))
+                            + (parkingSlot.vehiclesData().carsType) + " "
+                            + (parkingSlot.vehiclesData().carColour))
                     .collect(Collectors.toList());
             System.out.println("vehicles data " + smallHandicapCars);
             return smallHandicapCars;
         } catch (ParkingLotException e) {
-            throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
+            throw new ParkingLotException("Vehicle not Found", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
         }
     }
 
@@ -142,7 +142,7 @@ public class ParkingLotSystem {
                     .collect(Collectors.toList());
             return carCompany;
         } catch (ParkingLotException e) {
-            throw new ParkingLotException("This colour Vehicle not Found", ParkingLotException.ExceptionTypes.THIS_COLOUR_OF_VEHICLES_NOT_FOUND);
+            throw new ParkingLotException("Vehicle Type not Found", ParkingLotException.ExceptionTypes.VEHICLE_TYPE_NOT_FOUND);
         }
     }
 
@@ -159,13 +159,33 @@ public class ParkingLotSystem {
     }
 
     public ArrayList<String> findLast30MinuteParkedCars() {
-        ArrayList<String> ListOf30Min = new ArrayList<>();
-        ListOf30Min = (ArrayList<String>) this.vehicles.stream()
-                .filter(parkingSlot -> parkingSlot != null)
-                .filter(parkingSlot -> parkingSlot.timeWhenCarIsParked().getMinute() - LocalDateTime.now().getMinute() <= last30min)
-                .map(parkingSlot -> parkingSlot.vehiclesData().carsNumberPlate())
-                .collect(Collectors.toList());
-        return ListOf30Min;
+        try {
+            ArrayList<String> ListOf30Min = new ArrayList<>();
+            ListOf30Min = (ArrayList<String>) this.vehicles.stream()
+                    .filter(parkingSlot -> parkingSlot != null)
+                    .filter(parkingSlot -> parkingSlot.timeWhenCarIsParked().getMinute() - LocalDateTime.now().getMinute() <= last30min)
+                    .map(parkingSlot -> parkingSlot.vehiclesData().carsNumberPlate())
+                    .collect(Collectors.toList());
+            return ListOf30Min;
+        } catch (ParkingLotException e) {
+            throw new ParkingLotException("Vehicle not Found", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
+        }
+    }
+
+    public List<String> findAllCars() {
+        try {
+            List<String> allParkedCars = new ArrayList<>();
+            allParkedCars = this.vehicles.stream()
+                    .filter(parkingSlot -> parkingSlot != null)
+                    .map(parkingSlot -> (parkingSlot.vehiclesData().carsNumberPlate()) + " "
+                            + (parkingSlot.vehiclesData().carsType) + " "
+                            + (parkingSlot.vehiclesData().carColour))
+                    .collect(Collectors.toList());
+            System.out.println("vehicles data " + allParkedCars);
+            return allParkedCars;
+        } catch (ParkingLotException e) {
+            throw new ParkingLotException("Nothing in Parking Lot", ParkingLotException.ExceptionTypes.PARKING_LOT_IS_EMPTY);
+        }
     }
 
     public void registerParkingLotObserver(ParkingLotObserver observer) {
