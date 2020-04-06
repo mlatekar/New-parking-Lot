@@ -3,10 +3,8 @@ import java.util.Date;
 
 public class ParkingSlot {
 
-    ParkingLotSystem.DriverType driverTypeOfCar;
     Vehicles vehicle;
     Date parkedTime;
-    private Vehicles numberPlate;
     private LocalDateTime timeWhenCarIsParkedInSlot;
 
     public ParkingSlot(Vehicles vehicle) {

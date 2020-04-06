@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ParkingLotSystemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-05T19:48:40" hostname="LAPTOP-N41Q4R44" time="8.773">
+<testsuite name="ParkingLotSystemTest" tests="26" skipped="0" failures="0" errors="0" timestamp="2020-04-06T16:29:12" hostname="LAPTOP-N41Q4R44" time="0.097">
   <properties/>
-  <testcase name="givenParkingLot_IsEmptyThrowException" classname="ParkingLotSystemTest" time="8.773"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="givenParkingLot_WhenSpecified_BlueTOYOTACar_NotInParkingLot_ShouldThrowException" classname="ParkingLotSystemTest" time="0.028"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_LocationOfAllWhiteCars_ShouldThrowException" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_Have2ParkingSIze_ShouldPark2_Vehicle" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_AllBMW_Cars" classname="ParkingLotSystemTest" time="0.003"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_AllParkedCars" classname="ParkingLotSystemTest" time="0.004"/>
+  <testcase name="givenMultipleCarParkingLots_WhenAdded_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_DriverIsHandicap_ShouldParkTheCarNearestSlot" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_Location_NumberPlate_Of_BlueTOYOTA_Car" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="giveParkingLot_AfterFulledSign_WheneverParkingLotIs_Available_ItShouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_WhenBMWCars_NotFoundInParkingLot_ShouldThrowException" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_DriverFindHisCar_shouldReturnTrue" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_VehicleNotFound_ShouldReturnFalse" classname="ParkingLotSystemTest" time="0.004"/>
+  <testcase name="givenParkingLot_WantToKnow_AllCars_WhichParked_InLast30Minutes" classname="ParkingLotSystemTest" time="0.004"/>
+  <testcase name="givenParkingLot_WhenVehicleParked_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_WhenSpecifiedColourCar_IsNotPresentInParkingLot_ShouldThrowException" classname="ParkingLotSystemTest" time="0.007"/>
+  <testcase name="givenParkingLot_OwnerHaveParkingAttendant_ThatCan_ParkCar" classname="ParkingLotSystemTest" time="0.002"/>
+  <testcase name="givenParkingLot_ParkingOwnerWantToKnow_WhenCarIsPark" classname="ParkingLotSystemTest" time="0.016"/>
+  <testcase name="givenParkingLot_Full_ShouldInformSecurity" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_IsWhenFulled_ShouldReturnInformOwner" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_IsEmpty_ThrowException" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_IfVehicleIsUnParked_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_PoliceWantToKnow_LocationOfAllWhiteCars" classname="ParkingLotSystemTest" time="0.001"/>
+  <testcase name="givenParkingLot_WantToKnow_AllSmallHandicapCars" classname="ParkingLotSystemTest" time="0.004"/>
+  <testcase name="givenParkingLot_WhenVehicleAlreadyParked_shouldReturnFalse" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenMultipleCarsLessThanActualCapacity_WhenParkEvenly_shouldReturnLastEmptySpace" classname="ParkingLotSystemTest" time="0.0"/>
+  <testcase name="givenParkingLot_LargeCarsParkIn_HighestSpaceParkingLot_ShouldReturnTrue" classname="ParkingLotSystemTest" time="0.001"/>
+  <system-out><![CDATA[vehicles data []
+Location of Blue cars [MH46OO0007, MH05DX0110]
+vehicles data [AM33BH3333 TATA Gray, RD33UP0987 BMW Pink, ZH90UP5678 Ferrari Black, DL33UP9999 Bugatti Red, MH07AS1234 Jaguar Cyan]
+Total Cars  [AM33BH3333 TATA Gray, RD33UP0987 BMW Pink, ZH90UP5678 Ferrari Black, DL33UP9999 Bugatti Red, MH07AS1234 Jaguar Cyan]
+vehicles data [MH06AX0987]
+Location of Blue cars [MH06AX0987]
+Total Cars that parked last 30min [OD01MU0619, DL33UP9999, MH12XO0786, MH07AS1234, MH05BX8899]
+Mon Apr 06 21:59:12 IST 2020 time Mon Apr 06 21:59:12 IST 2020
+Location of white cars [5, 7]
+vehicles data [DL33UP9999 Bugatti Red, MH07AS1234 Jaguar Cyan]
+Total Cars  [DL33UP9999 Bugatti Red, MH07AS1234 Jaguar Cyan]
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

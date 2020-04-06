@@ -21,7 +21,7 @@ public class ManagementSystemOfParkingLot {
         return this.parkingLotSystemList.contains(parkingLot);
     }
 
-    public boolean park(Vehicles vehicle, ParkingLotSystem.DriverType driverType) {
+    public boolean park(Vehicles vehicle, Enum driverType) {
         ParkingLotSystem lot = maximumFreeSpaceToParkTheCar();
         return lot.park(vehicle, driverType);
     }

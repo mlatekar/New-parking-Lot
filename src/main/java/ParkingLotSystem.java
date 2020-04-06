@@ -5,8 +5,6 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public enum DriverType {NORMAL, HANDICAP, LARGE_VEHICLE, SMALL_HANDICAP}
-
     private ParkingSlot parkingSlot;
     private int actualCapacity;
     private List<ParkingLotObserver> observersList;
@@ -29,7 +27,7 @@ public class ParkingLotSystem {
         return vehicles.size();
     }
 
-    public boolean park(Vehicles vehicle, DriverType driverType) throws ParkingLotException {
+    public boolean park(Vehicles vehicle, Enum driverType) throws ParkingLotException {
         parkingSlot = new ParkingSlot(vehicle);
         if (isVehicleParked(vehicle))
             throw new ParkingLotException("Already parked", ParkingLotException.ExceptionTypes.VEHICLE_ALREADY_PARKED);
@@ -58,17 +56,26 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public Integer emptySlotToParkTheVehicle(DriverType driverType) {
-        if (DriverType.HANDICAP.equals(driverType)) {
-            return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
+    public Integer emptySlotToParkTheVehicle(Enum driverType) {
+        DriverType[] driverTypes = DriverType.values();
+        for (DriverType type : driverTypes) {
+            switch (type) {
+                case HANDICAP:
+                    return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
+                case NORMAL:
+                    return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
+            }
         }
-        if (DriverType.SMALL_HANDICAP.equals(driverType)) {
-            return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
+        VehicleType[] vehicleTypes = VehicleType.values();
+        for (VehicleType type1 : vehicleTypes) {
+            switch (type1) {
+                case LARGE_VEHICLE:
+                    return largeVehicleThatPark();
+                case SMALL_VEHICLE:
+                    return emptySpaceToParkTheCar().stream().sorted().collect(Collectors.toList()).get(0);
+            }
         }
-        if (DriverType.LARGE_VEHICLE.equals(driverType)) {
-            return largeVehicleThatPark();
-        }
-        return emptySpaceToParkTheCar().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0);
+        return null;
     }
 
     public int largeVehicleThatPark() {
@@ -86,7 +93,7 @@ public class ParkingLotSystem {
         throw new ParkingLotException("Vehicle Found", ParkingLotException.ExceptionTypes.VEHICLE_NOT_FOUND);
     }
 
-    public ArrayList<Integer> findMyCarByColour(String colour) {
+    public ArrayList<Integer> searchByCarColour(String colour) {
         try {
             ArrayList<Integer> carColour = new ArrayList<>();
             for (int getCarColour = 0; getCarColour < this.vehicles.size(); getCarColour++)
@@ -99,7 +106,7 @@ public class ParkingLotSystem {
         }
     }
 
-    public List<String> findMyCarByColourAndCarType(String carsColour, String carsType) {
+    public List<String> searchByCarColourAndCarType(String carsColour, String carsType) {
         try {
             List<String> carColour = new ArrayList<>();
             carColour = this.vehicles.stream()
@@ -115,7 +122,7 @@ public class ParkingLotSystem {
         }
     }
 
-    public List<String> findAllSmallHandicapCars(DriverType driverType) {
+    public List<String> searchAllSmallHandicapCars(DriverType driverType) {
         try {
             List<String> smallHandicapCars = new ArrayList<>();
             smallHandicapCars = this.vehicles.stream()
@@ -132,7 +139,7 @@ public class ParkingLotSystem {
         }
     }
 
-    public List<String> findMyCarByCarType(String carsType) {
+    public List<String> searchByCarsType(String carsType) {
         try {
             List<String> carCompany = new ArrayList<>();
             carCompany = this.vehicles.stream()

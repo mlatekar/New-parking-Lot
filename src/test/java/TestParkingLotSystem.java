@@ -15,7 +15,7 @@ public class TestParkingLotSystem {
     @Mock
     ManagementSystemOfParkingLot managementSystemOfParkingLot;
     ParkingLotSystem parkingLotSystem;
-    ParkingLotSystem.DriverType driverType;
+    DriverType driverType;
     Vehicles vehicle;
 
     @Rule
@@ -31,7 +31,7 @@ public class TestParkingLotSystem {
     @Test
     public void when_Called_ParkFunction_ShouldParkTheVehicle() {
         doAnswer((Answer<Void>) invocationOnMock -> {
-            parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.NORMAL);
+            parkingLotSystem.park(vehicle, DriverType.NORMAL);
             return null;
         }).when(managementSystemOfParkingLot).park(vehicle, driverType.NORMAL);
         boolean isParked = parkingLotSystem.park(vehicle, driverType.NORMAL);
@@ -65,10 +65,10 @@ public class TestParkingLotSystem {
     @Test
     public void when_Called_ParkFunction_ShouldParkLargeVehicle() {
         doAnswer((Answer<Void>) invocationOnMock -> {
-            parkingLotSystem.park(vehicle, ParkingLotSystem.DriverType.LARGE_VEHICLE);
+            parkingLotSystem.park(vehicle, VehicleType.LARGE_VEHICLE);
             return null;
-        }).when(managementSystemOfParkingLot).park(vehicle, driverType.LARGE_VEHICLE);
-        boolean isParked = parkingLotSystem.park(vehicle, driverType.LARGE_VEHICLE);
+        }).when(managementSystemOfParkingLot).park(vehicle, VehicleType.LARGE_VEHICLE);
+        boolean isParked = parkingLotSystem.park(vehicle, VehicleType.LARGE_VEHICLE);
         assertTrue(isParked);
     }
 

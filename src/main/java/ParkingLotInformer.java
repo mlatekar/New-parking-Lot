@@ -14,8 +14,8 @@ public class ParkingLotInformer {
     }
 
     public void notifyParkCapacityAvailable() {
-        for (ParkingLotObserver element : observersList)
-            element.isCapacityAvailable();
+        for (ParkingLotObserver lotObserver : observersList)
+            lotObserver.isCapacityAvailable();
     }
 
     public void registerParkingLotObserver(ParkingLotObserver observers) {
